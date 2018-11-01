@@ -564,7 +564,7 @@
                 </xs:annotation>
             </xs:element>
             <xs:element type="xs:token" name="trueLicenseVersion"
-                        minOccurs="0" default="${project.version}">
+                        minOccurs="0" default="${truelicense.version}">
                 <xs:annotation>
                     <xs:documentation>
                         The TrueLicense version to depend upon.

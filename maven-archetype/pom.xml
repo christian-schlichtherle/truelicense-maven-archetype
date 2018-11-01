@@ -7,8 +7,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>global.namespace.truelicense</groupId>
-        <artifactId>truelicense</artifactId>
+        <groupId>global.namespace.truelicense-maven-archetype</groupId>
+        <artifactId>root</artifactId>
         <version>4.0.0-SNAPSHOT</version>
     </parent>
 
@@ -48,39 +48,6 @@
         <xml-directory>${project.build.directory}/xml</xml-directory>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-jax-rs</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-maven-plugin</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-swing</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-v1</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-v2-json</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>truelicense-v2-xml</artifactId>
-            <optional>true</optional>
-        </dependency>
-    </dependencies>
-
     <build>
         <extensions>
             <extension>
@@ -95,6 +62,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>xml-maven-plugin</artifactId>
+                    <version>1.0.2</version>
                     <configuration>
                         <catalogs>
                             <catalog>${main-xml-directory}/catalog.xml</catalog>

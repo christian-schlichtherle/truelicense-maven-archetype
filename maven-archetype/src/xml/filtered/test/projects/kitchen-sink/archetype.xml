@@ -41,7 +41,7 @@
         <p:publicKeyStoreFile>public.ks</p:publicKeyStoreFile>
         <p:signatureAlgorithm>SHA1withRSA</p:signatureAlgorithm>
         <p:subject>Product 1</p:subject>
-        <p:trueLicenseVersion>${project.version}</p:trueLicenseVersion>
+        <p:trueLicenseVersion>${truelicense.version}</p:trueLicenseVersion>
         <p:verboseCli>true</p:verboseCli>
         <p:version>1.0-SNAPSHOT</p:version>
     </p:list>
