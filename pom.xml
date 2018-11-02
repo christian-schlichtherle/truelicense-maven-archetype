@@ -13,18 +13,20 @@
     </parent>
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
-    <artifactId>root</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <artifactId>truelicense-maven-plugin</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>maven-archetype</packaging>
 
-    <name>TrueLicense</name>
+    <name>TrueLicense Maven Archetype</name>
     <description>
-        TrueLicense is a commercial open source engine for license management on the Java Virtual Machine.
-        Due to its functional and modular design TrueLicense scales from simple to complex licensing schemas.
-        TrueLicense features various interfaces for managing free trial periods, subscriptions, multiple editions,
-        internationalization, privacy protection and more.
+        The TrueLicense Maven Archetype is a turn-key solution for designing
+        and implementing a custom licensing schema for your software product.
+        The archetype generates a tailor-made project which is composed of
+        ready-made modules for vending and consuming license keys.
+        The modules contain code templates which you can easily customize
+        without writing code by configuring a set of properties.
     </description>
-    <url>http://truelicense.net/</url>
+    <url>https://github.com/christian-schlichtherle/truelicense-maven-archetype</url>
     <inceptionYear>2005</inceptionYear>
     <licenses>
         <license>
@@ -64,79 +66,38 @@
     </distributionManagement>
 
     <properties>
-        <!-- clirr-maven-plugin -->
-        <comparisonVersion>3.0.0</comparisonVersion>
-
-        <javase.major>8</javase.major>
-
-        <!-- maven-compiler-plugin -->
-        <maven.compiler.debug>false</maven.compiler.debug>
-        <maven.compiler.optimize>true</maven.compiler.optimize>
-        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-        <maven.compiler.source>1.${javase.major}</maven.compiler.source>
-
-        <maven.version>3.5.4</maven.version>
-
-        <!-- truelicense-maven-plugin -->
-        <truelicense.obfuscate.intern>false</truelicense.obfuscate.intern>
-        <truelicense.obfuscate.scope>all</truelicense.obfuscate.scope>
-
         <!-- dependencies -->
-        <fun-io.version>2.0.0</fun-io.version>
-        <jackson.version>2.9.7</jackson.version>
-        <jaxb.version>2.3.1</jaxb.version>
         <truelicense.version>4.0.0-M1</truelicense.version>
+
+        <!-- For filtering resources. -->
+        <dollar>$</dollar>
+
+        <api>api</api>
+        <apiPackage>${project.groupId}.${api}</apiPackage>
+        <apiPackagePath>${packagePath}/${api}</apiPackagePath>
+        <main-xml-directory>${xml-directory}/main</main-xml-directory>
+        <packagePath>global/namespace/truelicense</packagePath>
+        <site-xml-directory>${xml-directory}/site</site-xml-directory>
+        <test-projects-directory>${test-xml-directory}/projects</test-projects-directory>
+        <test-xml-directory>${xml-directory}/test</test-xml-directory>
+        <xml-directory>${project.build.directory}/xml</xml-directory>
     </properties>
 
-    <modules>
-        <module>maven-archetype</module>
-    </modules>
-
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>3.0.1</version>
+            </extension>
+        </extensions>
+
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <compilerArgs>
-                            <arg>-Xlint:unchecked</arg>
-                        </compilerArgs>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>default-jar</id>
-                            <configuration>
-                                <skipIfEmpty>true</skipIfEmpty>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.5.2</version>
-                    <executions>
-                        <execution>
-                            <id>default-helpmojo</id>
-                            <goals>
-                                <goal>helpmojo</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>net.alchim31.maven</groupId>
-                    <artifactId>scala-maven-plugin</artifactId>
-                    <configuration>
-                        <args>
-                            <arg>-deprecation</arg>
-                            <arg>-explaintypes</arg>
-                            <arg>-feature</arg>
-                        </args>
-                    </configuration>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>xml-maven-plugin</artifactId>
+                    <version>1.0.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -153,37 +114,131 @@
                     <skipTestProject>true</skipTestProject>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-resources</id>
+                        <configuration>
+                            <addDefaultExcludes>false</addDefaultExcludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>initialize-xml</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${xml-directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/xml/filtered</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>src/xml/resources</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <configuration>
+                    <catalogs>
+                        <catalog>${main-xml-directory}/catalog.xml</catalog>
+                    </catalogs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-main-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <transformationSets>
+                                <transformationSet>
+                                    <dir>${main-xml-directory}</dir>
+                                    <includes>
+                                        <include>archetype-resources/pom.xml</include>
+                                    </includes>
+                                    <outputDir>${project.build.outputDirectory}</outputDir>
+                                    <stylesheet>${main-xml-directory}/archetype-resources/pom.xsl</stylesheet>
+                                </transformationSet>
+                                <transformationSet>
+                                    <dir>${main-xml-directory}</dir>
+                                    <includes>
+                                        <include>META-INF/maven/archetype-metadata.xml</include>
+                                    </includes>
+                                    <outputDir>${project.build.outputDirectory}</outputDir>
+                                    <stylesheet>${main-xml-directory}/META-INF/maven/archetype-metadata.xsl</stylesheet>
+                                </transformationSet>
+                            </transformationSets>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>validate</goal>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <transformationSets combine.children="append">
+                                <transformationSet>
+                                    <dir>${test-projects-directory}</dir>
+                                    <fileMappers>
+                                        <fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                                            <targetExtension>properties</targetExtension>
+                                        </fileMapper>
+                                    </fileMappers>
+                                    <includes>
+                                        <include>**/archetype.xml</include>
+                                    </includes>
+                                    <outputDir>${project.build.testOutputDirectory}/projects</outputDir>
+                                    <stylesheet>${test-projects-directory}/archetype.xsl</stylesheet>
+                                </transformationSet>
+                            </transformationSets>
+                            <validationSets>
+                                <validationSet>
+                                    <dir>${test-projects-directory}</dir>
+                                    <includes>
+                                        <include>**/archetype.xml</include>
+                                    </includes>
+                                    <systemId>${main-xml-directory}/archetype-properties.xsd</systemId>
+                                </validationSet>
+                            </validationSets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
-    <reporting>
-        <plugins>
-            <plugin>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>ci-management</report>
-                            <report>dependencies</report>
-                            <report>dependency-convergence</report>
-                            <report>dependency-info</report>
-                            <report>dependency-management</report>
-                            <report>distribution-management</report>
-                            <report>index</report>
-                            <report>issue-management</report>
-                            <report>licenses</report>
-                            <report>mailing-lists</report>
-                            <report>modules</report>
-                            <report>plugin-management</report>
-                            <report>plugins</report>
-                            <report>scm</report>
-                            <report>summary</report>
-                            <report>team</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
+    <profiles>
+        <profile>
+            <id>skip-tests</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-archetype-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
