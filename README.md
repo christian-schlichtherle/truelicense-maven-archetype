@@ -1,3 +1,8 @@
+[![Release Notes](https://img.shields.io/github/release/christian-schlichtherle/truelicense-maven-archetype.svg?maxAge=3600)](https://github.com/christian-schlichtherle/truelicense-maven-archetype/releases/latest)
+[![Maven Central](https://img.shields.io/maven-central/v/net.truelicense/truelicense-maven-archetype.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22global.namespace.truelicense-maven-archetype%22) 
+[![Apache License 2.0](https://img.shields.io/github/license/christian-schlichtherle/truelicense-maven-archetype.svg?maxAge=3600)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Build Status](https://api.travis-ci.org/christian-schlichtherle/truelicense-maven-archetype.svg)](https://travis-ci.org/christian-schlichtherle/truelicense-maven-archetype)
+
 # TrueLicense Maven Archetype
 
 This is the Maven Archetype for [TrueLicense](https://github.com/christian-schlichtherle/truelicense).
