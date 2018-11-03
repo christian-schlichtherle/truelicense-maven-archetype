@@ -430,7 +430,7 @@
 #else
                             <!--option>
 #end
-                                -keepclassmembers class V2RepositoryModel {
+                                -keepclassmembers class global.namespace.truelicense.v2.core.auth.V2RepositoryModel {
                                     public *** get*();
                                     public void set*(***);
                                 }
