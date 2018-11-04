@@ -14,7 +14,7 @@
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
     <artifactId>truelicense-maven-archetype</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0-M1</version>
     <packaging>maven-archetype</packaging>
 
     <name>TrueLicense Maven Archetype</name>
@@ -53,7 +53,7 @@
         <connection>scm:git:https://github.com/christian-schlichtherle/truelicense-maven-archetype.git</connection>
         <developerConnection>scm:git:https://github.com/christian-schlichtherle/truelicense-maven-archetype.git</developerConnection>
         <url>https://github.com/christian-schlichtherle/truelicense-maven-archetype</url>
-        <tag>HEAD</tag>
+        <tag>truelicense-maven-archetype-4.0.0-M1</tag>
     </scm>
 
     <distributionManagement>
