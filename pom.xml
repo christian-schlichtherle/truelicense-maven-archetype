@@ -58,7 +58,7 @@
 
     <properties>
         <!-- dependencies -->
-        <truelicense.version>4.0.0-M2</truelicense.version>
+        <truelicense.version>4.0.0-M3</truelicense.version>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>
