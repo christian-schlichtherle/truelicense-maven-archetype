@@ -9,7 +9,7 @@
     <parent>
         <groupId>global.namespace.parent-pom</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>5</version>
+        <version>6</version>
     </parent>
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
@@ -56,21 +56,9 @@
         <tag>HEAD</tag>
     </scm>
 
-    <distributionManagement>
-        <site>
-            <id>truelicense-website</id>
-            <name>TrueLicense Website</name>
-            <!-- DON'T use ${project.groupId}, ${project.artifactId} here - this would change in sub-modules! -->
-            <url>file://${user.home}/sites/christian-schlichtherle.github.io/truelicense-maven-archetype</url>
-        </site>
-    </distributionManagement>
-
     <properties>
         <!-- dependencies -->
         <truelicense.version>4.0.0-M1</truelicense.version>
-
-        <!-- For filtering resources. -->
-        <dollar>$</dollar>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>
@@ -106,10 +94,10 @@
             <plugin>
                 <groupId>com.amashchenko.maven.plugin</groupId>
                 <artifactId>gitflow-maven-plugin</artifactId>
-                <version>1.10.0</version>
+                <version>1.11.0</version>
                 <configuration>
                     <gitFlowConfig>
-                        <versionTagPrefix>truelicense-</versionTagPrefix>
+                        <versionTagPrefix>truelicense-maven-archetype-</versionTagPrefix>
                     </gitFlowConfig>
                     <skipTestProject>true</skipTestProject>
                 </configuration>
