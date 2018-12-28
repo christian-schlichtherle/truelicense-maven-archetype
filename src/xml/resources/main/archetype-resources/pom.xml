@@ -46,14 +46,14 @@
     <description>The parent POM for all license management modules.</description>
     <url>http://www.todo.com/</url>
     <licenses>
-        <!-- TO DO: Fill in the gaps. -->
+        <!-- TODO: Fill in the gaps. -->
     </licenses>
     <organization>
         <name>${dollar}{company}</name>
-        <!-- TO DO: Fill in the gaps. -->
+        <!-- TODO: Fill in the gaps. -->
     </organization>
     <developers>
-        <!-- TO DO: Fill in the gaps. -->
+        <!-- TODO: Fill in the gaps. -->
         <developer>
             <name>Christian Schlichtherle</name>
             <email>christian AT schlichtherle DOT de</email>
@@ -68,10 +68,10 @@
         </developer>
     </developers>
     <issueManagement>
-        <!-- TO DO: Fill in the gaps. -->
+        <!-- TODO: Fill in the gaps. -->
     </issueManagement>
     <scm>
-        <!-- TO DO: Fill in the gaps. -->
+        <!-- TODO: Fill in the gaps. -->
     </scm>
 
     <properties>
@@ -171,7 +171,7 @@
              See https://jira.codehaus.org/browse/MNG-5787 and
              https://java.net/jira/browse/TRUELICENSE-87 .
              -->
-        <maven.enforcer.requireMavenVersion>3.5.4</maven.enforcer.requireMavenVersion>
+        <maven.enforcer.requireMavenVersion>3.3.9</maven.enforcer.requireMavenVersion>
         <maven.enforcer.requireJavaVersion>${dollar}{maven.compiler.source}</maven.enforcer.requireJavaVersion>
 
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
@@ -283,7 +283,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
+                    <version>3.8.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -291,11 +291,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0-M1</version>
+                    <version>3.0.0-M2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.21.0</version>
+                    <version>2.22.1</version>
                     <executions>
                         <execution>
                             <id>integration-test</id>
@@ -316,21 +316,18 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.0.1</version>
                     <configuration>
                         <version>${dollar}{javadoc.version}</version>
                     </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>2.9</version>
-                    <configuration>
-                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-                    </configuration>
+                    <version>3.0.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-release-plugin</artifactId>
@@ -342,11 +339,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-scm-plugin</artifactId>
-                    <version>1.9.5</version>
+                    <version>1.11.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.2.1</version>
                     <configuration>
                         <filters combine.children="append">
                             <filter>
@@ -387,7 +384,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.21.0</version>
+                    <version>2.22.1</version>
                 </plugin>
                 <plugin>
                     <groupId>com.github.wvengen</groupId>
@@ -486,8 +483,7 @@
                         <dependency>
                             <groupId>net.sf.proguard</groupId>
                             <artifactId>proguard-base</artifactId>
-                            <version>6.0.3</version>
-                            <scope>runtime</scope>
+                            <version>6.1.0</version>
                         </dependency>
                     </dependencies>
                     <executions>
