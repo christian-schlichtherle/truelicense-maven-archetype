@@ -2,7 +2,10 @@
  * Copyright (C) 2005 - 2019 Schlichtherle IT Services.
  * All rights reserved. Use is subject to license terms.
  */
-#if($licenseKeyFormat == "V2/JSON")
+#if($licenseKeyFormat == "V4")
+#set($facadePackage = "global.namespace.truelicense.v4")
+#set($facadeClass = "V4")
+#elseif($licenseKeyFormat == "V2/JSON")
 #set($facadePackage = "global.namespace.truelicense.v2.json")
 #set($facadeClass = "V2Json")
 #elseif($licenseKeyFormat == "V2/XML")
@@ -65,7 +68,8 @@ public enum LicenseManager implements VendorLicenseManager {
                     .vendor()
                     .encryption()
 #if($licenseKeyFormat == "V1" && $pbeAlgorithm != "PBEWithMD5AndDES" ||
-    $licenseKeyFormat.startsWith("V2/") && $pbeAlgorithm != "PBEWithSHA1AndDESede")
+    $licenseKeyFormat.startsWith("V2/") && $pbeAlgorithm != "PBEWithSHA1AndDESede" ||
+    $licenseKeyFormat == "V4" && $pbeAlgorithm != "PBEWithHmacSHA256AndAES_128")
                         .algorithm(PBE_ALGORITHM)
 #end
                         .protection(#protection($editionPbePassword))
@@ -78,7 +82,8 @@ public enum LicenseManager implements VendorLicenseManager {
                         .loadFromResource(KEY_STORE_FILE)
                         .storeProtection(#protection($privateKeyStorePassword))
 #if($licenseKeyFormat == "V1" && $privateKeyStoreType != "JKS" ||
-    $licenseKeyFormat.startsWith("V2/") && $privateKeyStoreType != "JCEKS")
+    $licenseKeyFormat.startsWith("V2/") && $privateKeyStoreType != "JCEKS" ||
+    $licenseKeyFormat == "V4" && $privateKeyStoreType != "PKCS12")
                         .storeType(KEY_STORE_TYPE)
 #end
                         .up()
@@ -94,7 +99,8 @@ public enum LicenseManager implements VendorLicenseManager {
     @Obfuscate
     private static final String KEY_STORE_FILE = "$privateKeyStoreFile";
 #if($licenseKeyFormat == "V1" && $privateKeyStoreType != "JKS" ||
-    $licenseKeyFormat.startsWith("V2/") && $privateKeyStoreType != "JCEKS")
+    $licenseKeyFormat.startsWith("V2/") && $privateKeyStoreType != "JCEKS" ||
+    $licenseKeyFormat == "V4" && $privateKeyStoreType != "PKCS12")
 
     @Obfuscate
     private static final String KEY_STORE_TYPE = "$privateKeyStoreType";
@@ -103,7 +109,8 @@ public enum LicenseManager implements VendorLicenseManager {
     @Obfuscate
     private static final String SUBJECT = "$subject";
 #if($licenseKeyFormat == "V1" && $pbeAlgorithm != "PBEWithMD5AndDES" ||
-    $licenseKeyFormat.startsWith("V2/") && $pbeAlgorithm != "PBEWithSHA1AndDESede")
+    $licenseKeyFormat.startsWith("V2/") && $pbeAlgorithm != "PBEWithSHA1AndDESede" ||
+    $licenseKeyFormat == "V4" && $pbeAlgorithm != "PBEWithHmacSHA256AndAES_128")
 
     @Obfuscate
     private static final String PBE_ALGORITHM = "$pbeAlgorithm";

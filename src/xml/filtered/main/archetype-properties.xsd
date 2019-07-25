@@ -131,6 +131,7 @@
             <xs:enumeration value="V1"/>
             <xs:enumeration value="V2/JSON"/>
             <xs:enumeration value="V2/XML"/>
+            <xs:enumeration value="V4"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:complexType name="List">
@@ -433,10 +434,16 @@
                         <code>licenseKeyFormat</code>
                         property is set to
                         <code>V1</code>,
-                        then this gets set to
+                        then the value of this property is set to
                         <code>JKS</code>,
-                        otherwise it gets set to
-                        <code>JCEKS</code>.
+                        or else if the value of the
+                        <code>licenseKeyFormat</code>
+                        property starts with
+                        <code>V2/</code>,
+                        then the value of this property is set to
+                        <code>JCEKS</code>,
+                        or else the value of this property is set to
+                        <code>PKCS12</code>.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -501,10 +508,16 @@
                         <code>licenseKeyFormat</code>
                         property is set to
                         <code>V1</code>,
-                        then this gets set to
+                        then the value of this property is set to
                         <code>PBEWithMD5AndDES</code>,
-                        otherwise it gets set to
-                        <code>PBEWithSHA1AndDESede</code>.
+                        or else if the value of the
+                        <code>licenseKeyFormat</code>
+                        property starts with
+                        <code>V2/</code>,
+                        then the value of this property is set to
+                        <code>PBEWithSHA1AndDESede</code>,
+                        or else the value of this property is set to
+                        <code>PBEWithHmacSHA256AndAES_128</code>.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
