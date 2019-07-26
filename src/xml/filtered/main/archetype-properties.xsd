@@ -448,7 +448,7 @@
                 </xs:annotation>
             </xs:element>
             <xs:element type="p:LicenseKeyFormat" name="licenseKeyFormat"
-                        minOccurs="0" default="V2/JSON">
+                        minOccurs="0" default="V4">
                 <xs:annotation>
                     <xs:documentation>
                         The format of the license keys.
