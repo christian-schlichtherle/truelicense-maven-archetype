@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!--
-  ~ Copyright (C) 2005-2017 Schlichtherle IT Services.
+  ~ Copyright (C) 2005 - 2019 Schlichtherle IT Services.
   ~ All rights reserved. Use is subject to license terms.
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -9,12 +9,12 @@
     <parent>
         <groupId>global.namespace.parent-pom</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>6</version>
+        <version>9</version>
     </parent>
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
     <artifactId>truelicense-maven-archetype</artifactId>
-    <version>4.0.0-M3</version>
+    <version>4.0.0-RC1</version>
     <packaging>maven-archetype</packaging>
 
     <name>TrueLicense Maven Archetype</name>
@@ -28,19 +28,6 @@
     </description>
     <url>https://github.com/christian-schlichtherle/truelicense-maven-archetype</url>
     <inceptionYear>2005</inceptionYear>
-    <licenses>
-        <license>
-            <name>GNU AFFERO GENERAL PUBLIC LICENSE, Version 3, 19 November 2007</name>
-            <url>http://www.gnu.org/licenses/agpl-3.0-standalone.html</url>
-        </license>
-        <license>
-            <comments>
-                Commercial licensing for use with closed source software is available upon request.
-                Please contact sales AT schlichtherle DOT de .
-            </comments>
-            <name>TrueLicense Commercial License</name>
-        </license>
-    </licenses>
     <organization>
         <name>Schlichtherle IT Services</name>
         <url>https://schlichtherle.de</url>
@@ -58,7 +45,7 @@
 
     <properties>
         <!-- dependencies -->
-        <truelicense.version>4.0.0-M3</truelicense.version>
+        <truelicense.version>4.0.0-RC1</truelicense.version>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>
@@ -76,7 +63,7 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.1</version>
             </extension>
         </extensions>
 
@@ -91,17 +78,6 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>com.amashchenko.maven.plugin</groupId>
-                <artifactId>gitflow-maven-plugin</artifactId>
-                <version>1.11.0</version>
-                <configuration>
-                    <gitFlowConfig>
-                        <versionTagPrefix>truelicense-maven-archetype-</versionTagPrefix>
-                    </gitFlowConfig>
-                    <skipTestProject>true</skipTestProject>
-                </configuration>
-            </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>

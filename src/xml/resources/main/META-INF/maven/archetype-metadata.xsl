@@ -1,13 +1,13 @@
 <?xml version='1.0'?>
 <!--
-  ~ Copyright (C) 2005-2017 Schlichtherle IT Services.
+  ~ Copyright (C) 2005 - 2019 Schlichtherle IT Services.
   ~ All rights reserved. Use is subject to license terms.
   -->
 <xsl:stylesheet
         exclude-result-prefixes="d xs"
         version="1.0"
-        xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-        xmlns:d="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:d="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
