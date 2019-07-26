@@ -90,9 +90,14 @@
                    h:href="http://docs.oracle.com/javase/${javase.major}/docs/technotes/guides/security/StandardNames.html#KeyPairGenerator">
         <xs:restriction base="xs:token">
             <xs:enumeration value="auto"/>
+            <xs:enumeration value="DiffieHellman"/>
             <xs:enumeration value="DSA"/>
             <xs:enumeration value="EC"/>
             <xs:enumeration value="RSA"/>
+            <xs:enumeration value="RSASSA-PSS"/>
+            <xs:enumeration value="X25519"/>
+            <xs:enumeration value="X448"/>
+            <xs:enumeration value="XDH"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="KeyStoreType"
@@ -105,8 +110,10 @@
         </xs:annotation>
         <xs:restriction base="xs:token">
             <xs:enumeration value="auto"/>
+            <xs:enumeration value="DKS"/>
             <xs:enumeration value="JCEKS"/>
             <xs:enumeration value="JKS"/>
+            <xs:enumeration value="PKCS11"/>
             <xs:enumeration value="PKCS12"/>
         </xs:restriction>
     </xs:simpleType>
@@ -700,16 +707,41 @@
                    h:href="http://docs.oracle.com/javase/${javase.major}/docs/technotes/guides/security/StandardNames.html#Signature">
         <xs:restriction base="xs:token">
             <xs:enumeration value="auto"/>
+
             <xs:enumeration value="NONEwithDSA"/>
             <xs:enumeration value="SHA1withDSA"/>
             <xs:enumeration value="SHA224withDSA"/>
             <xs:enumeration value="SHA256withDSA"/>
+            <xs:enumeration value="SHA384withDSA"/>
+            <xs:enumeration value="SHA512withDSA"/>
+            <xs:enumeration value="SHA3-224withDSA"/>
+            <xs:enumeration value="SHA3-256withDSA"/>
+            <xs:enumeration value="SHA3-384withDSA"/>
+            <xs:enumeration value="SHA3-512withDSA"/>
+
+            <xs:enumeration value="NONEwithDSAinP1363Format"/>
+            <xs:enumeration value="SHA1withDSAinP1363Format"/>
+            <xs:enumeration value="SHA224withDSAinP1363Format"/>
+            <xs:enumeration value="SHA256withDSAinP1363Format"/>
+
             <xs:enumeration value="NONEwithECDSA"/>
             <xs:enumeration value="SHA1withECDSA"/>
             <xs:enumeration value="SHA224withECDSA"/>
             <xs:enumeration value="SHA256withECDSA"/>
             <xs:enumeration value="SHA384withECDSA"/>
             <xs:enumeration value="SHA512withECDSA"/>
+            <xs:enumeration value="SHA3-224withECDSA"/>
+            <xs:enumeration value="SHA3-256withECDSA"/>
+            <xs:enumeration value="SHA3-384withECDSA"/>
+            <xs:enumeration value="SHA3-512withECDSA"/>
+
+            <xs:enumeration value="NONEwithECDSAinP1363Format"/>
+            <xs:enumeration value="SHA1withECDSAinP1363Format"/>
+            <xs:enumeration value="SHA224withECDSAinP1363Format"/>
+            <xs:enumeration value="SHA256withECDSAinP1363Format"/>
+            <xs:enumeration value="SHA384withECDSAinP1363Format"/>
+            <xs:enumeration value="SHA512withECDSAinP1363Format"/>
+
             <xs:enumeration value="NONEwithRSA"/>
             <xs:enumeration value="MD2withRSA"/>
             <xs:enumeration value="MD5withRSA"/>
@@ -718,6 +750,14 @@
             <xs:enumeration value="SHA256withRSA"/>
             <xs:enumeration value="SHA384withRSA"/>
             <xs:enumeration value="SHA512withRSA"/>
+            <xs:enumeration value="SHA512/224withRSA"/>
+            <xs:enumeration value="SHA512/256withRSA"/>
+            <xs:enumeration value="SHA3-224withRSA"/>
+            <xs:enumeration value="SHA3-256withRSA"/>
+            <xs:enumeration value="SHA3-384withRSA"/>
+            <xs:enumeration value="SHA3-512withRSA"/>
+
+            <xs:enumeration value="RSASSA-PSS"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="Version">
