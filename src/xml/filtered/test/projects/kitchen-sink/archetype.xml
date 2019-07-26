@@ -30,8 +30,8 @@
         <p:keyMgrClock>java.time.Clock.systemDefaultZone()</p:keyMgrClock>
         <p:keyMgrValidation>new com.company.product.keymgr.Main.NoLicenseValidation()</p:keyMgrValidation>
         <p:keyMgrValidationComposition>decorate</p:keyMgrValidationComposition>
-        <p:keyPairAlgorithm>RSA</p:keyPairAlgorithm>
-        <p:keyPairSize>2048</p:keyPairSize>
+        <p:keyPairAlgorithm>EC</p:keyPairAlgorithm>
+        <p:keyPairSize>571</p:keyPairSize>
         <p:keyStoreType>JKS</p:keyStoreType>
         <p:licenseKeyFormat>V2/XML</p:licenseKeyFormat>
         <p:package>com.company.product</p:package>
@@ -40,7 +40,7 @@
         <p:preferencesType>user</p:preferencesType>
         <p:privateKeyStoreFile>private.ks</p:privateKeyStoreFile>
         <p:publicKeyStoreFile>public.ks</p:publicKeyStoreFile>
-        <p:signatureAlgorithm>SHA1withRSA</p:signatureAlgorithm>
+        <p:signatureAlgorithm>SHA512withECDSA</p:signatureAlgorithm>
         <p:subject>Product 1</p:subject>
         <p:trueLicenseVersion>${truelicense.version}</p:trueLicenseVersion>
         <p:verboseCli>true</p:verboseCli>
