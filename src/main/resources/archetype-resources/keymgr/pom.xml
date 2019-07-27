@@ -92,6 +92,7 @@
                                 -overloadaggressively
                                 -repackageclasses
                                 -allowaccessmodification
+                                -dontnote
                             </option>
                         </options>
                     </configuration>
@@ -121,7 +122,7 @@
             <id>generate-keymgr-guarded-jar-for-java8</id>
             <activation>
                 <file>
-                    <exists>${dollar}{java.home}/lib/rt.jar</exists>
+                    <exists>${dollar}{java.home}/lib</exists>
                 </file>
                 <property>
                     <name>skipStandaloneJars</name>
@@ -135,8 +136,8 @@
                         <artifactId>proguard-maven-plugin</artifactId>
                         <configuration>
                             <libs>
-                                <lib>${dollar}{java.home}/lib/jce.jar</lib>
-                                <lib>${dollar}{java.home}/lib/rt.jar</lib>
+                                <lib>${dollar}{java.home}/lib</lib>
+                                <lib>${dollar}{java.home}/lib/ext</lib>
                             </libs>
                         </configuration>
                     </plugin>
@@ -147,7 +148,7 @@
             <id>generate-keymgr-guarded-jar-for-java9</id>
             <activation>
                 <file>
-                    <exists>${dollar}{java.home}/jmods/java.base.jmod</exists>
+                    <exists>${dollar}{java.home}/jmods</exists>
                 </file>
                 <property>
                     <name>skipStandaloneJars</name>
@@ -161,7 +162,7 @@
                         <artifactId>proguard-maven-plugin</artifactId>
                         <configuration>
                             <libs>
-                                <lib>${dollar}{java.home}/jmods/java.base.jmod</lib>
+                                <lib>${dollar}{java.home}/jmods</lib>
                             </libs>
                         </configuration>
                     </plugin>
