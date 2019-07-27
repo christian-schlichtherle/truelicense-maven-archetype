@@ -390,10 +390,6 @@
                         <outjar>${dollar}{project.build.finalName}-guarded.jar</outjar>
                         <!-- Not required with maven-shade-plugin. -->
                         <includeDependency>false</includeDependency>
-                        <libs combine.children="append">
-                            <lib>${dollar}{java.home}/lib/jce.jar</lib>
-                            <lib>${dollar}{java.home}/lib/rt.jar</lib>
-                        </libs>
                         <!-- The following options are required for
                              TrueLicense 4. -->
                         <options combine.children="append">
