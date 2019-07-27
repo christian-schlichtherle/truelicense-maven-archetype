@@ -23,7 +23,7 @@
         </fileSet>
     </fileSets>
     <modules>
-        <module dir="__rootArtifactId__-keygen"
+        <module dir="keygen"
                 id="${rootArtifactId}-keygen"
                 name="${rootArtifactId}-keygen">
             <fileSets>
@@ -56,7 +56,7 @@
                 </fileSet>
             </fileSets>
         </module>
-        <module dir="__rootArtifactId__-keymgr"
+        <module dir="keymgr"
                 id="${rootArtifactId}-keymgr"
                 name="${rootArtifactId}-keymgr">
             <fileSets>
@@ -92,7 +92,7 @@
                 </fileSet>
             </fileSets>
         </module>
-        <module dir="__rootArtifactId__-keymgr-service"
+        <module dir="keymgr-service"
                 id="${rootArtifactId}-keymgr-service"
                 name="${rootArtifactId}-keymgr-service">
             <fileSets>

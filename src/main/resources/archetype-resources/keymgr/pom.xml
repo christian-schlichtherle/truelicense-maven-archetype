@@ -170,7 +170,7 @@
                                             <configuration>
                                                 <alias>${dollar}{@item@KeyEntryAlias}</alias>
                                                 <file>${dollar}{project.build.directory}/@item@.cert</file>
-                                                <keystore>${dollar}{basedir}/../${rootArtifactId}-keygen/src/main/resources/${dollar}{privateKeyStoreFile}</keystore>
+                                                <keystore>${dollar}{basedir}/../keygen/src/main/resources/${dollar}{privateKeyStoreFile}</keystore>
                                                 <storepass>${dollar}{privateKeyStorePassword}</storepass>
                                                 <storetype>${dollar}{privateKeyStoreType}</storetype>
                                             </configuration>
