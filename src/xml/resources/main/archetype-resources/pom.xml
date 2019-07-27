@@ -470,16 +470,16 @@
                             </option>
 
                             <!-- This option configures the obfuscation of the
-                                 Jackson JSON Processor, version 2.7.0.
+                                 Jackson JSON Processor, version 2.7.0 and 2.9.9.
                                  You should remove this option if you are not
-                                 using the V2/JSON license key format. -->
-#if($licenseKeyFormat == "V2/JSON")
+                                 using the V2/JSON or V4 license key format. -->
+#if($licenseKeyFormat == "V2/JSON" || $licenseKeyFormat == "V4")
                             <option>
 #else
                             <!--option>
 #end
                                 -keep class * extends com.fasterxml.jackson.core.util.VersionUtil
-#if($licenseKeyFormat != "V2/JSON")
+#if($licenseKeyFormat != "V2/JSON" && $licenseKeyFormat != "V4")
                             </option-->
 #else
                             </option>
