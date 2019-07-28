@@ -559,7 +559,7 @@
                             <artifactId>proguard-maven-plugin</artifactId>
                             <configuration>
                                 <libs>
-                                    <lib>${dollar}{java.home}/jmods</lib>
+                                    <lib>${dollar}{java.home}/jmods(!**.jar;!module-info.class)</lib>
                                 </libs>
                             </configuration>
                         </plugin>
