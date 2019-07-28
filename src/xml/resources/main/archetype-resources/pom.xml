@@ -388,12 +388,6 @@
                     <configuration>
                         <injar>${dollar}{project.build.finalName}-standalone.jar</injar>
                         <inFilter>$package.replace('.', '/')/**,de/schlichtherle/**,global/namespace/truelicense/**</inFilter>
-<!--                        <includeDependency>false</includeDependency>-->
-<!--
-                        <libs combine.children="append">
-                            <lib>${dollar}{project.build.directory}/${dollar}{project.build.finalName}-standalone.jar</lib>
-                        </libs>
--->
                         <outjar>${dollar}{project.build.finalName}-guarded.jar</outjar>
 
                         <!-- The following options are required for TrueLicense 4: -->
