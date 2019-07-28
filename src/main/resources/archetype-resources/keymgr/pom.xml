@@ -49,20 +49,20 @@
             <optional>true</optional>
         </dependency>
 #end
-#if($licenseKeyFormat == "V2/XML")
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+#if($licenseKeyFormat != "V2/XML")
+            <optional>true</optional>
 #end
+        </dependency>
     </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.github.wvengen</groupId>
+                    <groupId>uk.co.caprica</groupId>
                     <artifactId>proguard-maven-plugin</artifactId>
                     <configuration>
                         <!-- The following options should apply to most standalone Java applications: -->
@@ -122,11 +122,8 @@
             </build>
         </profile>
         <profile>
-            <id>generate-keymgr-guarded-jar-for-java8</id>
+            <id>generate-keymgr-guarded-jar</id>
             <activation>
-                <file>
-                    <exists>${dollar}{java.home}/lib</exists>
-                </file>
                 <property>
                     <name>skipStandaloneJars</name>
                     <value>!true</value>
@@ -135,39 +132,8 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.github.wvengen</groupId>
+                        <groupId>uk.co.caprica</groupId>
                         <artifactId>proguard-maven-plugin</artifactId>
-                        <configuration>
-                            <libs>
-                                <lib>${dollar}{java.home}/lib</lib>
-                                <lib>${dollar}{java.home}/lib/ext</lib>
-                            </libs>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>generate-keymgr-guarded-jar-for-java9</id>
-            <activation>
-                <file>
-                    <exists>${dollar}{java.home}/jmods</exists>
-                </file>
-                <property>
-                    <name>skipStandaloneJars</name>
-                    <value>!true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.wvengen</groupId>
-                        <artifactId>proguard-maven-plugin</artifactId>
-                        <configuration>
-                            <libs>
-                                <lib>${dollar}{java.home}/jmods</lib>
-                            </libs>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>

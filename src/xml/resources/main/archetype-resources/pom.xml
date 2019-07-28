@@ -382,17 +382,20 @@
                     <version>2.22.2</version>
                 </plugin>
                 <plugin>
-                    <groupId>com.github.wvengen</groupId>
+                    <groupId>uk.co.caprica</groupId>
                     <artifactId>proguard-maven-plugin</artifactId>
-                    <version>2.1.1</version>
+                    <version>1.0.0</version>
                     <configuration>
-#if($licenseKeyFormat == "V1")
-                        <inFilter>$package.replace('.', '/')/**,global/namespace/truelicense/**,de/schlichtherle/**</inFilter>
-#else
-                        <inFilter>$package.replace('.', '/')/**,global/namespace/truelicense/**</inFilter>
-#end
                         <injar>${dollar}{project.build.finalName}-standalone.jar</injar>
+                        <inFilter>$package.replace('.', '/')/**,de/schlichtherle/**,global/namespace/truelicense/**</inFilter>
+<!--                        <includeDependency>false</includeDependency>-->
+<!--
+                        <libs combine.children="append">
+                            <lib>${dollar}{project.build.directory}/${dollar}{project.build.finalName}-standalone.jar</lib>
+                        </libs>
+-->
                         <outjar>${dollar}{project.build.finalName}-guarded.jar</outjar>
+
                         <!-- The following options are required for TrueLicense 4: -->
                         <options combine.children="append">
 #if($licenseKeyFormat == "V1")
@@ -524,6 +527,52 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>configure-proguard-for-java8</id>
+            <activation>
+                <file>
+                    <exists>${dollar}{java.home}/lib/rt.jar</exists>
+                </file>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>uk.co.caprica</groupId>
+                            <artifactId>proguard-maven-plugin</artifactId>
+                            <configuration>
+                                <libs>
+                                    <lib>${dollar}{java.home}/lib</lib>
+                                </libs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>configure-proguard-for-java9+</id>
+            <activation>
+                <file>
+                    <exists>${dollar}{java.home}/jmods</exists>
+                </file>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>uk.co.caprica</groupId>
+                            <artifactId>proguard-maven-plugin</artifactId>
+                            <configuration>
+                                <libs>
+                                    <lib>${dollar}{java.home}/jmods</lib>
+                                </libs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
         <profile>
             <id>non-transitive-test-source-dependencies</id>
             <activation>
