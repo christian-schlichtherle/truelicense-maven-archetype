@@ -49,6 +49,13 @@
             <optional>true</optional>
         </dependency>
 #end
+#if($licenseKeyFormat == "V2/XML")
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+#end
     </dependencies>
 
     <build>
