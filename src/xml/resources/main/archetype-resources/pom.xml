@@ -386,6 +386,7 @@
                     <artifactId>proguard-maven-plugin</artifactId>
                     <version>2.1.1</version>
                     <configuration>
+                        <inFilter>!META-INF/versions/**,!com/sun/**,!java/**,!javax/**,!org/jvnet/fastinfoset/**,!sun/**</inFilter>
                         <injar>${dollar}{project.build.finalName}-standalone.jar</injar>
                         <outjar>${dollar}{project.build.finalName}-guarded.jar</outjar>
                         <!-- Not required with maven-shade-plugin. -->
@@ -623,38 +624,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <!-- Remove redundant JAXB dependencies because they cause ProGuard to fail the build. -->
-            <id>exclude-jaxb-dependencies-before-jdk9</id>
-            <activation>
-                <jdk>[,9)</jdk>
-            </activation>
-            <dependencyManagement>
-                <dependencies>
-                    <dependency>
-                        <groupId>global.namespace.truelicense</groupId>
-                        <artifactId>truelicense-jax-rs</artifactId>
-                        <version>${dollar}{trueLicenseVersion}</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>javax.xml.bind</groupId>
-                                <artifactId>jaxb-api</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                    <dependency>
-                        <groupId>global.namespace.fun-io</groupId>
-                        <artifactId>fun-io-jaxb</artifactId>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>javax.xml.bind</groupId>
-                                <artifactId>jaxb-api</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                </dependencies>
-            </dependencyManagement>
         </profile>
     </profiles>
 </project>
