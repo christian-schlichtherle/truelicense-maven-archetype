@@ -65,8 +65,7 @@
                     <groupId>com.github.wvengen</groupId>
                     <artifactId>proguard-maven-plugin</artifactId>
                     <configuration>
-                        <!-- The following options should apply to most
-                             standalone Java applications. -->
+                        <!-- The following options should apply to most standalone Java applications: -->
                         <options>
                             <option>
                                 -keepclasseswithmembers public class * {
@@ -74,10 +73,9 @@
                                 }
                             </option>
 
-                            <!-- This option excludes the secret FTP marker
-                                 class from byte code obfuscation.
-                                 You can remove this option if you do not want
-                                 to provide auto-generated FTP license keys. -->
+                            <!-- This option excludes the secret FTP marker class from byte code obfuscation.
+                                 You can remove this option if you do not want to provide auto-generated FTP license
+                                 keys; -->
 #if($freeTrialPeriod != 0)
                             <option>
 #else
@@ -90,10 +88,8 @@
                             </option>
 #end
 
-                            <!-- The following options are specific to this
-                                 sample project.
-                                 You may need to edit them when customizing
-                                 this sample project. -->
+                            <!-- The following options are specific to this sample project.
+                                 You may need to edit them when customizing this sample project: -->
                             <option>
                                 -optimizationpasses 3
                                 -overloadaggressively
