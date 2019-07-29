@@ -60,69 +60,7 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>uk.co.caprica</groupId>
-                    <artifactId>proguard-maven-plugin</artifactId>
-                    <configuration>
-                        <!-- The following options should apply to most standalone Java applications: -->
-                        <options>
-                            <option>
-                                -keepclasseswithmembers public class * {
-                                    public static void main(java.lang.String[]);
-                                }
-                            </option>
-
-                            <!-- This option excludes the secret FTP marker class from byte code obfuscation.
-                                 You can remove this option if you do not want to provide auto-generated FTP license
-                                 keys; -->
-#if($freeTrialPeriod != 0)
-                            <option>
-#else
-                            <!--option>
-#end
-                                -keep class $ftpSecretMarkerClass
-#if($freeTrialPeriod == 0)
-                            <option-->
-#else
-                            </option>
-#end
-
-                            <!-- The following options are specific to this sample project.
-                                 You may need to edit them when customizing this sample project: -->
-                            <option>
-                                -optimizationpasses 3
-                                -overloadaggressively
-                                -repackageclasses
-                                -allowaccessmodification
-                                -dontnote
-                            </option>
-                        </options>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
     <profiles>
-        <profile>
-            <id>generate-keymgr-standalone-jar</id>
-            <activation>
-                <property>
-                    <name>skipStandaloneJars</name>
-                    <value>!true</value>
-                </property>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-shade-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>generate-keymgr-guarded-jar</id>
             <activation>
@@ -134,8 +72,124 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>uk.co.caprica</groupId>
-                        <artifactId>proguard-maven-plugin</artifactId>
+                        <groupId>global.namespace.truelicense</groupId>
+                        <artifactId>truelicense-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>proguard</id>
+                                <goals>
+                                    <goal>proguard</goal>
+                                </goals>
+                                <configuration>
+                                    <injars>
+                                        <injar>
+                                            ${dollar}{project.build.finalName}-standalone.jar($package.replace('.', '/')/**,de/schlichtherle/**,global/namespace/truelicense/**)
+                                        </injar>
+                                    </injars>
+                                    <options>
+                                        <!-- The following options are specific to this sample project.
+                                             You may need to edit them when customizing this sample project: -->
+                                        <option>
+                                            -dontnote
+                                            -optimizationpasses 3
+                                            -overloadaggressively
+                                            -repackageclasses
+                                            -allowaccessmodification
+                                            -keepclasseswithmembers public class * {
+                                                public static void main(java.lang.String[]);
+                                            }
+                                        </option>
+
+                                        <!-- This option excludes the secret FTP marker class from byte code obfuscation.
+                                             You can remove this option if you do not want to provide auto-generated FTP license
+                                             keys; -->
+#if($freeTrialPeriod != 0)
+                                        <option>
+#else
+                                        <!--option>
+#end
+                                            -keep class $ftpSecretMarkerClass
+#if($freeTrialPeriod == 0)
+                                        <option-->
+#else
+                                        </option>
+#end
+
+                                        <!-- The following options are required for TrueLicense 4: -->
+#if($licenseKeyFormat == "V1")
+                                        <option>
+#else
+                                        <!--option>
+#end
+                                            -keepnames class de.schlichtherle.license.LicenseContent
+                                            -keepclassmembers class de.schlichtherle.license.LicenseContent {
+                                                public *** get*();
+                                                public void set*(***);
+                                            }
+                                            -keepnames class de.schlichtherle.xml.GenericCertificate
+                                            -keepclassmembers class de.schlichtherle.xml.GenericCertificate {
+                                                public *** get*();
+                                                public void set*(***);
+                                            }
+#if($licenseKeyFormat != "V1")
+                                        </option-->
+#else
+                                        </option>
+#end
+#if($licenseKeyFormat.startsWith("V2/"))
+                                        <option>
+#else
+                                        <!--option>
+#end
+                                            -keepclassmembers class global.namespace.truelicense.v2.core.auth.V2RepositoryModel {
+                                                *;
+                                            }
+#if(!$licenseKeyFormat.startsWith("V2/"))
+                                        </option-->
+#else
+                                        </option>
+#end
+#if($licenseKeyFormat == "V4")
+                                        <option>
+#else
+                                        <!--option>
+#end
+                                            -keepclassmembers class global.namespace.truelicense.v4.auth.V4RepositoryModel {
+                                                *;
+                                            }
+#if($licenseKeyFormat != "V4")
+                                        </option-->
+#else
+                                        </option>
+#end
+
+                                        <option>
+                                            -adaptresourcefilenames
+                                            -keepclassmembers class * extends global.namespace.truelicense.api.License {
+                                                public *** get*();
+                                                public void set*(***);
+                                            }
+                                            -keep,allowobfuscation class global.namespace.truelicense.api.codec.X500PrincipalXmlAdapter
+                                            -keepclassmembers class global.namespace.truelicense.jax.rs.dto.*DTO {
+                                                *;
+                                            }
+                                            -keepclassmembers enum * {
+                                                public static **[] values();
+                                                public static ** valueOf(java.lang.String);
+                                            }
+                                            -keepattributes *Annotation*,EnclosingMethod,InnerClasses,Signature
+                                        </option>
+                                    </options>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.sf.proguard</groupId>
+                                <artifactId>proguard-base</artifactId>
+                                <version>6.1.1</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
                 </plugins>
             </build>

@@ -44,8 +44,10 @@
     </scm>
 
     <properties>
-        <!-- dependencies -->
-        <truelicense.version>4.0.0-RC1</truelicense.version>
+        <!-- Dependencies: -->
+        <!-- Do NOT use version 3.1.1 - see https://issues.apache.org/jira/browse/ARCHETYPE-573 : -->
+        <archetype.version>3.1.0</archetype.version>
+        <truelicense.version>4.0.0-SNAPSHOT</truelicense.version>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>
@@ -63,12 +65,16 @@
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>3.1.1</version>
+                <version>${archetype.version}</version>
             </extension>
         </extensions>
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>${archetype.version}</version>
+                </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>xml-maven-plugin</artifactId>

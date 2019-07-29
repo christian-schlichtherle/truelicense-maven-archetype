@@ -85,72 +85,64 @@
         <!-- The delimiter for editions. -->
         <delimiter>$delimiter</delimiter>
 
-        <!-- The distinguished name to use when generating private key entries
-             in keystores and initializing the issuer in license beans. -->
+        <!-- The distinguished name to use when generating private key entries in key stores and initializing the issuer
+             in license beans. -->
         <distinguishedName>CN=${dollar}{company}</distinguishedName>
 
-        <!-- The alias of the entry with the private key for the edition 'ftp' in the FTP keystore file
-             '${dollar}{ftpKeyStoreFile}' in the Key Manager module.
-             This property is ignored if '${dollar}{freeTrialPeriod} 'is '0'.
-             Otherwise, if this property is not defined, then it defaults to 'ftp'. -->
+        <!-- The alias of the entry with the private key for the edition `ftp` in the FTP keystore file
+             `${dollar}{ftpKeyStoreFile}` in the Key Manager module.
+             This property is ignored if `${dollar}{freeTrialPeriod}` is `0`.
+             Otherwise, if this property is not defined, then it defaults to `ftp`. -->
         <ftpKeyEntryAlias>ftp</ftpKeyEntryAlias>
 
         <!-- The password for accessing the private key for the edition 'ftp' in the FTP keystore file
-             '${dollar}{ftpKeyStoreFile}' in the Key Manager module.
-             This property is ignored if ${dollar}{freeTrialPeriod} is '0'.
-             Otherwise, if this property is not defined, then it defaults to '${dollar}{ftpKeyStorePassword}'. -->
+             `${dollar}{ftpKeyStoreFile}` in the Key Manager module.
+             This property is ignored if `${dollar}{freeTrialPeriod}` is `0`.
+             Otherwise, if this property is not defined, then it defaults to `${dollar}{ftpKeyStorePassword}`. -->
         <ftpKeyEntryPassword>${dollar}{ftpKeyStorePassword}</ftpKeyEntryPassword>
 
-        <!-- The password for verifying the integrity of the FTP keystore file
-             ${dollar}{ftpKeyStoreFile} in the Key Manager module.
-             The value of this property is ignored if the value of the property
-             "freeTrialPeriod" is "0". -->
+        <!-- The password for verifying the integrity of the FTP keystore file `${dollar}{ftpKeyStoreFile}` in the Key
+             Manager module.
+             The value of this property is ignored if `${dollar}{freeTrialPeriod}` is `0`. -->
         <ftpKeyStorePassword>${dollar}{password}</ftpKeyStorePassword>
 
-        <!-- The type of the FTP keystore file ${dollar}{ftpKeyStoreFile} in
-             the Key Manager module.
-             The value of this property is ignored if the value of the property
-             "freeTrialPeriod" is "0". -->
+        <!-- The type of the FTP keystore file `${dollar}{ftpKeyStoreFile}` in the Key Manager module.
+             The value of this property is ignored if `${dollar}{freeTrialPeriod}` is `0`. -->
         <ftpKeyStoreType>${dollar}{keyStoreType}</ftpKeyStoreType>
 
-        <!-- The password for verifying the integrity of the private keystore
-             file ${dollar}{privateKeyStoreFile} in the Key Generator module. -->
+        <!-- The password for verifying the integrity of the private keystore file `${dollar}{privateKeyStoreFile}` in
+             the Key Generator module. -->
         <privateKeyStorePassword>${dollar}{password}</privateKeyStorePassword>
 
-        <!-- The type of the private keystore file
-             ${dollar}{privateKeyStoreFile} in the Key Generator module. -->
+        <!-- The type of the private keystore file `${dollar}{privateKeyStoreFile}` in the Key Generator module. -->
         <privateKeyStoreType>${dollar}{keyStoreType}</privateKeyStoreType>
 
-        <!-- The password for verifying the integrity of the public keystore
-             file ${dollar}{publicKeyStoreFile} in the Key Manager module. -->
+        <!-- The password for verifying the integrity of the public keystore file `${dollar}{publicKeyStoreFile}` in the
+             Key Manager module. -->
         <publicKeyStorePassword>${dollar}{password}</publicKeyStorePassword>
 
-        <!-- The type of the public keystore file
-             ${dollar}{publicKeyStoreFile} in the Key Manager module. -->
+        <!-- The type of the public keystore file `${dollar}{publicKeyStoreFile}` in the Key Manager module. -->
         <publicKeyStoreType>${dollar}{keyStoreType}</publicKeyStoreType>
 
-        <!-- The name of the module to depend upon for base functionality like
-             vending or consuming license keys.
-             One of "truelicense-core" or "truelicense-json".
-             If the ${dollar}{licenseKeyFormat} property is set to "V2/JSON",
-             then this needs to be set to "truelicense-json", otherwise set it
-             to "truelicense-core". -->
+        <!-- The name of the module to depend upon for base functionality like vending or consuming license keys.
+             One of `truelicense-v1`, `truelicense-v2-json`, `truelicense-v2-xml` or `truelicense-v4`, depending on
+             '${dollar}{licenseKeyFormat}'. -->
         <trueLicenseArtifactId>$trueLicenseArtifactId</trueLicenseArtifactId>
 #foreach($edition in $editionArray)
 
-        <!-- The password for encrypting license keys for the edition '$edition'.
-             If this property is not defined, then it defaults to '${dollar}{password}'. -->
+        <!-- The password for encrypting license keys for the edition `$edition`.
+             If this property is not defined, then it defaults to `${dollar}{password}`. -->
         <PbePassword prefix="${edition}">${dollar}{password}</PbePassword>
 
-        <!-- The alias of the entry with the private key for the edition '$edition' in the private keystore file
-             '${dollar}{privateKeyStoreFile}' in the Key Generator module and the public keystore file
-             '${dollar}{publicKeyStoreFile}' in the Key Manager module.
-             If this property is not defined, then it defaults to '$edition'. -->
+        <!-- The alias of the entry with the private key for the edition `$edition` in the private keystore file
+             `${dollar}{privateKeyStoreFile}` in the Key Generator module and the public keystore file
+             `${dollar}{publicKeyStoreFile}` in the Key Manager module.
+             If this property is not defined, then it defaults to `$edition`. -->
         <KeyEntryAlias prefix="${edition}">$edition</KeyEntryAlias>
 
-        <!-- The password for accessing the private key for the edition '$edition' in the private keystore file
-             '${dollar}{privateKeyStoreFile}' in the Key Generator module.
-             If this property is not defined, then it defaults to '${dollar}{privateKeyStorePassword}'. -->
+        <!-- The password for accessing the private key for the edition `$edition` in the private keystore file
+             `${dollar}{privateKeyStoreFile}` in the Key Generator module.
+             If this property is not defined, then it defaults to `${dollar}{privateKeyStorePassword}`. -->
         <KeyEntryPassword prefix="${edition}">${dollar}{privateKeyStorePassword}</KeyEntryPassword>
 #end
 
@@ -161,11 +153,9 @@
 
         <!-- maven-enforcer-plugin -->
         <maven.enforcer.requireJavaVersion>${dollar}{maven.compiler.target}</maven.enforcer.requireJavaVersion>
-        <!-- As detected by mvn versions:display-plugin-updates, except versions
-             3.3.1 and 3.3.3, which would fail with a ClassNotFoundException
-             when running the TrueLicense Maven Plugin.
-             See https://jira.codehaus.org/browse/MNG-5787 and
-             https://java.net/jira/browse/TRUELICENSE-87 .
+        <!-- As detected by mvn versions:display-plugin-updates, except versions 3.3.1 and 3.3.3, which would fail with
+             a ClassNotFoundException when running the TrueLicense Maven Plugin.
+             See https://jira.codehaus.org/browse/MNG-5787 and https://java.net/jira/browse/TRUELICENSE-87 .
              -->
         <maven.enforcer.requireMavenVersion>3.3.9</maven.enforcer.requireMavenVersion>
 
@@ -339,6 +329,13 @@
                 <plugin>
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>3.2.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <filters combine.children="append">
                             <filter>
@@ -361,13 +358,6 @@
                             </transformer>
                         </transformers>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>shade</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
@@ -380,97 +370,6 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.2</version>
-                </plugin>
-                <plugin>
-                    <groupId>uk.co.caprica</groupId>
-                    <artifactId>proguard-maven-plugin</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <injar>${dollar}{project.build.finalName}-standalone.jar</injar>
-                        <inFilter>$package.replace('.', '/')/**,de/schlichtherle/**,global/namespace/truelicense/**</inFilter>
-                        <outjar>${dollar}{project.build.finalName}-guarded.jar</outjar>
-
-                        <!-- The following options are required for TrueLicense 4: -->
-                        <options combine.children="append">
-#if($licenseKeyFormat == "V1")
-                            <option>
-#else
-                            <!--option>
-#end
-                                -keepnames class de.schlichtherle.license.LicenseContent
-                                -keepclassmembers class de.schlichtherle.license.LicenseContent {
-                                    public *** get*();
-                                    public void set*(***);
-                                }
-                                -keepnames class de.schlichtherle.xml.GenericCertificate
-                                -keepclassmembers class de.schlichtherle.xml.GenericCertificate {
-                                    public *** get*();
-                                    public void set*(***);
-                                }
-#if($licenseKeyFormat != "V1")
-                            </option-->
-#else
-                            </option>
-#end
-#if($licenseKeyFormat.startsWith("V2/"))
-                            <option>
-#else
-                            <!--option>
-#end
-                                -keepclassmembers class global.namespace.truelicense.v2.core.auth.V2RepositoryModel {
-                                    *;
-                                }
-#if(!$licenseKeyFormat.startsWith("V2/"))
-                            </option-->
-#else
-                            </option>
-#end
-#if($licenseKeyFormat == "V4")
-                            <option>
-#else
-                            <!--option>
-#end
-                                -keepclassmembers class global.namespace.truelicense.v4.auth.V4RepositoryModel {
-                                    *;
-                                }
-#if($licenseKeyFormat != "V4")
-                            </option-->
-#else
-                            </option>
-#end
-
-                            <option>
-                                -adaptresourcefilenames
-                                -keepclassmembers class * extends global.namespace.truelicense.api.License {
-                                    public *** get*();
-                                    public void set*(***);
-                                }
-                                -keep,allowobfuscation class global.namespace.truelicense.api.codec.X500PrincipalXmlAdapter
-                                -keepclassmembers class global.namespace.truelicense.jax.rs.dto.*DTO {
-                                    *;
-                                }
-                                -keepclassmembers enum * {
-                                    public static **[] values();
-                                    public static ** valueOf(java.lang.String);
-                                }
-                                -keepattributes *Annotation*,EnclosingMethod,InnerClasses,Signature
-                            </option>
-                        </options>
-                    </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>net.sf.proguard</groupId>
-                            <artifactId>proguard-base</artifactId>
-                            <version>6.1.1</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>proguard</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>global.namespace.truelicense</groupId>
@@ -522,52 +421,6 @@
 
     <profiles>
         <profile>
-            <id>configure-proguard-for-java8</id>
-            <activation>
-                <file>
-                    <exists>${dollar}{java.home}/lib/rt.jar</exists>
-                </file>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>uk.co.caprica</groupId>
-                            <artifactId>proguard-maven-plugin</artifactId>
-                            <configuration>
-                                <libs>
-                                    <lib>${dollar}{java.home}/lib</lib>
-                                </libs>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
-            <id>configure-proguard-for-java9+</id>
-            <activation>
-                <file>
-                    <exists>${dollar}{java.home}/jmods</exists>
-                </file>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>uk.co.caprica</groupId>
-                            <artifactId>proguard-maven-plugin</artifactId>
-                            <configuration>
-                                <libs>
-                                    <lib>${dollar}{java.home}/jmods(!**.jar;!module-info.class)</lib>
-                                </libs>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
             <id>non-transitive-test-source-dependencies</id>
             <activation>
                 <file>
@@ -581,6 +434,25 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
+        </profile>
+        <profile>
+            <id>generate-standalone-jar</id>
+            <activation>
+                <file>
+                    <exists>src/main</exists>
+                </file>
+                <property>
+                    <name>skipStandaloneJars</name>
+                    <value>!true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-shade-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>generate-main-sources</id>
