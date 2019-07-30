@@ -90,6 +90,8 @@
                                         <!-- The following options are specific to this sample project.
                                              You may need to edit them when customizing this sample project: -->
                                         <option>
+                                            -printseeds proguard_seed.txt
+                                            -printmapping proguard_map.txt
                                             -dontnote
                                             -optimizationpasses 3
                                             -overloadaggressively
