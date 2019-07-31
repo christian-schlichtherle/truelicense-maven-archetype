@@ -23,7 +23,7 @@
         <p:artifactId>free-trial-period</p:artifactId>
         <p:company>Company Inc.</p:company>
         <p:freeTrialPeriod>30</p:freeTrialPeriod>
-        <p:ftpSecretMarkerClass>sun.security.provider.Sun</p:ftpSecretMarkerClass>
+        <p:ftpSecretMarkerClass>java.lang.Object</p:ftpSecretMarkerClass>
         <p:groupId>com.company.product</p:groupId>
         <p:password>test1234</p:password>
         <p:subject>Product 1</p:subject>

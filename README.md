@@ -7,5 +7,5 @@
 
 This is the Maven Archetype for [TrueLicense](https://github.com/christian-schlichtherle/truelicense).
 
-Previous releases were covered by the GNU Affero General Public License, Version 3.
-Since version 4, TrueLicense is covered by the Apache License, Version 2.0.
+Before version 4, the TrueLicense Maven Archetype was covered by the GNU Affero General Public License, Version 3.
+Since version 4, it is covered by the MIT License.
