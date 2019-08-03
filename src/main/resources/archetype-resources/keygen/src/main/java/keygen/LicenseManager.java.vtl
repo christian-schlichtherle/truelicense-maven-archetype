@@ -90,7 +90,6 @@ public enum LicenseManager implements VendorLicenseManager {
                     .build();
         }
     }#if($foreach.count == $editionsSize);#{else},#end
-
 #end
 
     @Obfuscate
@@ -150,7 +149,7 @@ public enum LicenseManager implements VendorLicenseManager {
     }
 
     @Override
-    public LicenseManagementSchema schema() { return manager().schema(); }
+    public LicenseManagerParameters parameters() { return manager().parameters(); }
 
     @Override
     public LicenseKeyGenerator generateKeyFrom(License bean) throws LicenseManagementException {

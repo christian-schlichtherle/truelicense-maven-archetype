@@ -52,7 +52,7 @@ public enum Main {
 
                 final Map<CreateOption, String> options = Main.parse(params, CreateOption.class);
                 VendorLicenseManager manager;
-                Codec codec;
+                LicenseManagerParameters parameters;
 
                 {
                     final String licenseKeyPath = params.poll();
@@ -80,7 +80,7 @@ public enum Main {
                 License createOrDecodeInputLicense() throws Exception {
                     final String path = options.get(CreateOption.INPUT);
                     return null == path
-                            ? context().license()
+                            ? parameters().licenseFactory().license()
                             : (License) codec()
                                 .decoder("-".equals(path) ? stdin() : file(path))
                                 .decode(License.class);
@@ -95,20 +95,22 @@ public enum Main {
                 }
 
                 Codec codec() {
-                    final Codec c = codec;
-                    return null != c ? c : (codec = context().codec());
+                    return parameters().codec();
+                }
+
+                LicenseManagerParameters parameters() {
+                    final LicenseManagerParameters p = parameters;
+                    return null != p ? p : (parameters = manager().parameters());
+                }
+
+                VendorLicenseManager manager() {
+                    final VendorLicenseManager m = manager;
+                    return null != m ? m : (manager = LicenseManager.valueOf(editionName()));
                 }
 
                 Store store() {
                     final String path = options.get(CreateOption.KEY);
                     return null == path ? memory() : file(path); // send to /dev/null if no path
-                }
-
-                LicenseManagementContext context() { return manager().context(); }
-
-                VendorLicenseManager manager() {
-                    final VendorLicenseManager m = manager;
-                    return null != m ? m : (manager = LicenseManager.valueOf(editionName()));
                 }
 
                 String editionName() {

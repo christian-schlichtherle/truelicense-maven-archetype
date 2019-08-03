@@ -230,7 +230,7 @@ public enum LicenseManager implements ConsumerLicenseManager {
     }
 
     @Override
-    public LicenseManagementSchema schema() { return manager().schema(); }
+    public LicenseManagerParameters parameters() { return manager().parameters(); }
 
     @Override
     public void install(Source source) throws LicenseManagementException {

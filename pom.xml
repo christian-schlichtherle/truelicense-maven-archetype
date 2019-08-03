@@ -14,7 +14,7 @@
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
     <artifactId>truelicense-maven-archetype</artifactId>
-    <version>4.0.0-RC2</version>
+    <version>4.0.0-RC3</version>
     <packaging>maven-archetype</packaging>
 
     <name>TrueLicense Maven Archetype</name>
@@ -47,7 +47,7 @@
         <!-- Dependencies: -->
         <!-- Do NOT use version 3.1.1 - see https://issues.apache.org/jira/browse/ARCHETYPE-573 : -->
         <archetype.version>3.1.0</archetype.version>
-        <truelicense.version>4.0.0-RC3</truelicense.version>
+        <truelicense.version>4.0.0</truelicense.version>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>

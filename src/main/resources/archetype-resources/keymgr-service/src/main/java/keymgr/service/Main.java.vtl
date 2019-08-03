@@ -16,25 +16,34 @@ import java.net.URI;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import static java.lang.System.*;
 
-/** @author Christian Schlichtherle */
+/**
+ * @author Christian Schlichtherle
+ */
 public class Main {
 
     private static final String BASE_URI = "http://localhost:9998/";
 
-    public static void main(final String[] args) throws IOException {
-        final ResourceConfig rc = new ResourceConfig(
+    public static void main(String... ignored) throws IOException {
+        final ConsumerLicenseManager manager = LicenseManager.get();
+        final ResourceConfig config = new ResourceConfig(
                 ConsumerLicenseManagementService.class,
-                ConsumerLicenseManagementServiceExceptionMapper.class
-        ).registerInstances(new AbstractBinder() {
-            protected void configure() {
-                bind(LicenseManager.get()).to(ConsumerLicenseManager.class);
-            }
-        });
-        final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+                ConsumerLicenseManagementServiceExceptionMapper.class,
+                JacksonFeature.class
+        ).registerInstances(
+                new ObjectMapperResolver(manager.parameters().licenseFactory().licenseClass()),
+                new AbstractBinder() {
+
+                    protected void configure() {
+                        bind(manager).to(ConsumerLicenseManager.class);
+                    }
+                }
+        );
+        final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
 
         out.printf("Server running at %s.\nHit enter to stop it...\n", BASE_URI);
         in.read();
