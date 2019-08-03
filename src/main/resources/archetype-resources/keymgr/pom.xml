@@ -49,15 +49,13 @@
             <optional>true</optional>
         </dependency>
 #end
+#if($licenseKeyFormat == "V2/XML")
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <!-- Runtime scope doesn't work with the proguard-maven-plugin: -->
-            <!--scope>runtime</scope-->
-#if($licenseKeyFormat != "V2/XML")
-            <optional>true</optional>
-#end
+            <scope>runtime</scope>
         </dependency>
+#end
     </dependencies>
 
     <profiles>

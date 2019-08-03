@@ -31,14 +31,13 @@
             <groupId>global.namespace.truelicense</groupId>
             <artifactId>${dollar}{trueLicenseArtifactId}</artifactId>
         </dependency>
+#if($licenseKeyFormat == "V2/XML")
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <scope>runtime</scope>
-#if($licenseKeyFormat != "V2/XML")
-            <optional>true</optional>
-#end
         </dependency>
+#end
     </dependencies>
 
     <profiles>
