@@ -221,6 +221,13 @@
                 <version>${dollar}{project.version}</version>
             </dependency>
 
+#if($licenseKeyFormat == "V2/XML")
+            <dependency>
+                <groupId>com.sun.activation</groupId>
+                <artifactId>javax.activation</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+#end
             <dependency>
                 <groupId>global.namespace.truelicense</groupId>
                 <artifactId>truelicense</artifactId>
@@ -517,5 +524,28 @@
                 </plugins>
             </build>
         </profile>
+#if($licenseKeyFormat == "V2/XML")
+        <profile>
+            <id>jaxb-dependencies-jdk9+</id>
+            <activation>
+                <file>
+                    <exists>src/main</exists>
+                </file>
+                <jdk>[9,)</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.sun.activation</groupId>
+                    <artifactId>javax.activation</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+#end
     </profiles>
 </project>
