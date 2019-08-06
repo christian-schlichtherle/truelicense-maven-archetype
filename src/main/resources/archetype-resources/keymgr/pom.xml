@@ -114,13 +114,14 @@
                                         <option>
                                             -adaptresourcefilenames
 
-                                            -keep class global.namespace.truelicense.api.License {
+                                            -keepclassmembers class global.namespace.truelicense.api.License {
                                                 public *** get*();
                                                 public void set*(***);
                                             }
+                                            -keep,allowobfuscation class global.namespace.truelicense.core.LicenseStub
                                             -keepnames class de.schlichtherle.license.LicenseContent
                                             -keepclassmembers class global.namespace.truelicense.v2.xml.V2XmlX500PrincipalXmlAdapter {
-                                                *;
+                                                &lt;init&gt;();
                                             }
 
                                             -keepclassmembers class global.namespace.truelicense.**.*RepositoryModel {
