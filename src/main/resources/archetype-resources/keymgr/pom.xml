@@ -49,13 +49,6 @@
             <optional>true</optional>
         </dependency>
 #end
-#if($licenseKeyFormat == "V2/XML")
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-#end
     </dependencies>
 
     <profiles>
@@ -80,9 +73,7 @@
                                 </goals>
                                 <configuration>
                                     <injars>
-                                        <injar>
-                                            ${dollar}{project.build.finalName}-standalone.jar($package.replace('.', '/')/**,de/schlichtherle/**,global/namespace/truelicense/**)
-                                        </injar>
+                                        <injar>${dollar}{project.build.finalName}-standalone.jar(!module-info.class,!META-INF/maven/**,!META-INF/versions/**)</injar>
                                     </injars>
                                     <options>
                                         <!-- The following options are specific to this sample project.
@@ -95,7 +86,11 @@
                                             -overloadaggressively
                                             -repackageclasses
                                             -allowaccessmodification
-                                            -keepclasseswithmembers public class * {
+
+                                            -keep class !${dollar}{package}.**,!de.schlichtherle.**,!global.namespace.truelicense.** {
+                                                *;
+                                            }
+                                            -keepclasseswithmembers public class ${dollar}{package}.** {
                                                 public static void main(java.lang.String[]);
                                             }
                                         </option>
@@ -108,7 +103,7 @@
 #else
                                         <!--option>
 #end
-                                            -keep class $ftpSecretMarkerClass
+                                            -keep class ${dollar}ftpSecretMarkerClass
 #if($freeTrialPeriod == 0)
                                         <option-->
 #else
@@ -116,60 +111,28 @@
 #end
 
                                         <!-- The following options are required for TrueLicense 4: -->
-#if($licenseKeyFormat == "V1")
                                         <option>
-#else
-                                        <!--option>
-#end
-                                            -keepnames class de.schlichtherle.license.LicenseContent
-                                            -keepclassmembers class de.schlichtherle.license.LicenseContent {
+                                            -adaptresourcefilenames
+
+                                            -keepclassmembers class global.namespace.truelicense.api.License {
                                                 public *** get*();
                                                 public void set*(***);
                                             }
-                                            -keepnames class de.schlichtherle.xml.GenericCertificate
+                                            -keep,allowobfuscation class global.namespace.truelicense.core.LicenseStub
+                                            -keepnames class de.schlichtherle.license.LicenseContent
+                                            -keepclassmembers class global.namespace.truelicense.v2.xml.V2XmlX500PrincipalXmlAdapter {
+                                                &lt;init&gt;();
+                                            }
+
+                                            -keepclassmembers class global.namespace.truelicense.**.*RepositoryModel {
+                                                *;
+                                            }
                                             -keepclassmembers class de.schlichtherle.xml.GenericCertificate {
                                                 public *** get*();
                                                 public void set*(***);
                                             }
-#if($licenseKeyFormat != "V1")
-                                        </option-->
-#else
-                                        </option>
-#end
-#if($licenseKeyFormat.startsWith("V2/"))
-                                        <option>
-#else
-                                        <!--option>
-#end
-                                            -keepclassmembers class global.namespace.truelicense.v2.core.auth.V2RepositoryModel {
-                                                *;
-                                            }
-#if(!$licenseKeyFormat.startsWith("V2/"))
-                                        </option-->
-#else
-                                        </option>
-#end
-#if($licenseKeyFormat == "V4")
-                                        <option>
-#else
-                                        <!--option>
-#end
-                                            -keepclassmembers class global.namespace.truelicense.v4.auth.V4RepositoryModel {
-                                                *;
-                                            }
-#if($licenseKeyFormat != "V4")
-                                        </option-->
-#else
-                                        </option>
-#end
+                                            -keepnames class de.schlichtherle.xml.GenericCertificate
 
-                                        <option>
-                                            -adaptresourcefilenames
-                                            -keepclassmembers class * extends global.namespace.truelicense.api.License {
-                                                public *** get*();
-                                                public void set*(***);
-                                            }
-                                            -keep,allowobfuscation class global.namespace.truelicense.api.codec.X500PrincipalXmlAdapter
                                             -keepclassmembers class global.namespace.truelicense.jax.rs.dto.*DTO {
                                                 *;
                                             }
@@ -177,7 +140,7 @@
                                                 public static **[] values();
                                                 public static ** valueOf(java.lang.String);
                                             }
-                                            -keepattributes *Annotation*,EnclosingMethod,InnerClasses,Signature
+                                            -keepattributes *Annotation*,Signature
                                         </option>
                                     </options>
                                 </configuration>
