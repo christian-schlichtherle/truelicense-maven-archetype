@@ -10,4 +10,4 @@ This is the Maven Archetype for [TrueLicense](https://github.com/christian-schli
 Before version 4, the TrueLicense Maven Archetype was covered by the GNU Affero General Public License, Version 3.
 Since version 4, it is covered by the MIT License.
 
-The old documentation at http://truelicense.net/ is now obsolete and will be updated next.
+The old documentation at https://truelicense.net/ is now obsolete and will be updated eventually.
