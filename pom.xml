@@ -14,7 +14,7 @@
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
     <artifactId>truelicense-maven-archetype</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.2-SNAPSHOT</version>
     <packaging>maven-archetype</packaging>
 
     <name>TrueLicense Maven Archetype</name>
