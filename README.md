@@ -23,7 +23,7 @@ $ mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.0:generate \
     -Dcompany='Company Inc.' \
     -DgroupId=com.company.product \
     -Dpassword=test1234 \
-    -Dsubject='Product 1' \
+    -Dsubject='StarGazer 2020' \
     -Dversion=1.0-SNAPSHOT
 $ cd basic
 $ chmod +x mvnw
@@ -34,7 +34,7 @@ Next, you can generate and install a license key like this:
 
 ```bash
 $ java -jar keygen/target/*-keygen-*-standalone.jar generate license.lic -output -
-{"consumerAmount":1,"consumerType":"User","holder":"CN=Unknown","issued":1565085418292,"issuer":"CN=Company Inc.","subject":"Product 1"}
+{"consumerAmount":1,"consumerType":"User","holder":"CN=Unknown","issued":1565085418292,"issuer":"CN=Company Inc.","subject":"StarGazer 2020"}
 $ java -jar keymgr/target/*-keymgr-*-guarded.jar wizard
 ```
 
