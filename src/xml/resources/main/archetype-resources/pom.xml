@@ -223,8 +223,8 @@
 
 #if($licenseKeyFormat == "V2/XML")
             <dependency>
-                <groupId>com.sun.activation</groupId>
-                <artifactId>javax.activation</artifactId>
+                <groupId>javax.activation</groupId>
+                <artifactId>javax.activation-api</artifactId>
                 <version>1.2.0</version>
             </dependency>
 #end
@@ -283,7 +283,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>3.0.0-M2</version>
+                    <version>3.0.0-M3</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
@@ -308,7 +308,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
@@ -368,11 +368,11 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.7.1</version>
+                    <version>3.8.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -540,8 +540,8 @@
                     <scope>runtime</scope>
                 </dependency>
                 <dependency>
-                    <groupId>com.sun.activation</groupId>
-                    <artifactId>javax.activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>javax.activation-api</artifactId>
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
