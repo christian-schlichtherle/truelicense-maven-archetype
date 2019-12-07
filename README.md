@@ -9,3 +9,33 @@ This is the Maven Archetype for [TrueLicense](https://github.com/christian-schli
 
 Before version 4, the TrueLicense Maven Archetype was covered by the GNU Affero General Public License, Version 3.
 Since version 4, it is covered by the MIT License.
+
+The old documentation at https://truelicense.net/ is now obsolete and will be updated eventually.
+In the mean time, please still use it as your reference.
+For a quick start, here's how you can generate a sample project using the new V4 license key format:
+
+```bash
+$ mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.0:generate \
+    -DarchetypeGroupId=global.namespace.truelicense-maven-archetype \
+    -DarchetypeArtifactId=truelicense-maven-archetype \
+    -DarchetypeVersion=4.0.0 \
+    -DartifactId=basic \
+    -Dcompany='Company Inc.' \
+    -DgroupId=com.company.product \
+    -Dpassword=test1234 \
+    -Dsubject='StarGazer 2020' \
+    -Dversion=1.0-SNAPSHOT
+$ cd basic
+$ chmod +x mvnw
+$ ./mvnw clean verify
+```
+
+Next, you can generate and install a license key like this:
+
+```bash
+$ java -jar keygen/target/*-keygen-*-standalone.jar generate license.lic -output -
+{"consumerAmount":1,"consumerType":"User","holder":"CN=Unknown","issued":1565085418292,"issuer":"CN=Company Inc.","subject":"StarGazer 2020"}
+$ java -jar keymgr/target/*-keymgr-*-guarded.jar wizard
+```
+
+Follow the instructions of the licensing wizard to install, view and uninstall the license key previously saved to the `license.lic` file.
