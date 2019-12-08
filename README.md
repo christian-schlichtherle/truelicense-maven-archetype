@@ -18,7 +18,7 @@ For a quick start, here's how you can generate a sample project using the new V4
 $ mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.0:generate \
     -DarchetypeGroupId=global.namespace.truelicense-maven-archetype \
     -DarchetypeArtifactId=truelicense-maven-archetype \
-    -DarchetypeVersion=4.0.0 \
+    -DarchetypeVersion=4.0.1 \
     -DartifactId=basic \
     -Dcompany='Company Inc.' \
     -DgroupId=com.company.product \
