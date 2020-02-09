@@ -221,13 +221,6 @@
                 <version>${dollar}{project.version}</version>
             </dependency>
 
-#if($licenseKeyFormat == "V2/XML")
-            <dependency>
-                <groupId>com.sun.activation</groupId>
-                <artifactId>javax.activation</artifactId>
-                <version>1.2.0</version>
-            </dependency>
-#end
             <dependency>
                 <groupId>global.namespace.truelicense</groupId>
                 <artifactId>truelicense</artifactId>
@@ -372,7 +365,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>3.2.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>

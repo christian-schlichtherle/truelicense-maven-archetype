@@ -108,7 +108,6 @@ public enum LicenseManager implements ConsumerLicenseManager {
                     .build();
         }
     }#if($foreach.count == $editionsSize && $freeTrialPeriod == 0);#{else},#end
-
 #set($parentEdition = $edition)
 #set($parentEditionPbePassword = $editionPbePassword)
 #end
