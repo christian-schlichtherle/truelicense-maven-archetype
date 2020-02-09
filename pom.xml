@@ -9,7 +9,7 @@
     <parent>
         <groupId>global.namespace.parent-pom</groupId>
         <artifactId>parent-pom</artifactId>
-        <version>9</version>
+        <version>10</version>
     </parent>
 
     <groupId>global.namespace.truelicense-maven-archetype</groupId>
@@ -45,7 +45,7 @@
 
     <properties>
         <archetype.version>3.1.2</archetype.version>
-        <truelicense.version>4.0.1</truelicense.version>
+        <truelicense.version>4.0.3</truelicense.version>
 
         <api>api</api>
         <apiPackage>${project.groupId}.${api}</apiPackage>
