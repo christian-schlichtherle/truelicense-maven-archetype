@@ -150,7 +150,8 @@
                             <dependency>
                                 <groupId>net.sf.proguard</groupId>
                                 <artifactId>proguard-base</artifactId>
-                                <version>6.2.0</version>
+                                <!-- FIXME: This version of ProGuard doesn't support Java 14. -->
+                                <version>6.2.2</version>
                             </dependency>
                         </dependencies>
                     </plugin>
