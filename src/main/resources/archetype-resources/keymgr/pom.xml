@@ -240,9 +240,7 @@
                                 <configuration>
                                     <alias>${dollar}{ftpKeyEntryAlias}</alias>
                                     <dname>${dollar}{distinguishedName}</dname>
-#if($keyPairAlgorithm != "auto")
-                                    <keyalg>${dollar}{keyPairAlgorithm}</keyalg>
-#end
+                                    <keyalg>#if($keyPairAlgorithm == "auto")DSA#{else}${dollar}{keyPairAlgorithm}#end</keyalg>
                                     <keypass>${dollar}{ftpKeyEntryPassword}</keypass>
 #if($keyPairSize != 0)
                                     <keysize>${dollar}{keyPairSize}</keysize>
