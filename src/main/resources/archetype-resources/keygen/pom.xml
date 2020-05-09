@@ -64,7 +64,7 @@
                                             <configuration>
                                                 <alias>${dollar}{@item@KeyEntryAlias}</alias>
                                                 <dname>${dollar}{distinguishedName}</dname>
-                                                <keyalg>#if($keyPairAlgorithm == "auto")DSA#{else}${dollar}{keyPairAlgorithm}#end</keyalg>
+                                                <keyalg>${dollar}{keyPairAlgorithm}</keyalg>
                                                 <keypass>${dollar}{@item@KeyEntryPassword}</keypass>
 #if($keyPairSize != 0)
                                                 <keysize>${dollar}{keyPairSize}</keysize>
