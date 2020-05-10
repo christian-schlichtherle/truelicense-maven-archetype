@@ -24,13 +24,6 @@
             <xs:enumeration value="runtime"/>
         </xs:restriction>
     </xs:simpleType>
-    <xs:complexType name="Documentation" mixed="true">
-        <xs:sequence minOccurs="0" maxOccurs="unbounded">
-            <xs:any processContents="lax"/>
-        </xs:sequence>
-        <xs:attribute ref="xml:lang"/>
-        <xs:anyAttribute namespace="##other" processContents="lax"/>
-    </xs:complexType>
     <xs:simpleType name="GroupId">
         <xs:restriction base="xs:NCName"/>
     </xs:simpleType>
@@ -220,10 +213,6 @@
     </xs:simpleType>
     <xs:complexType name="Properties">
         <xs:sequence>
-            <!--xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:element type="p:Documentation" name="documentation"/>
-            </xs:choice-->
-            <xs:element type="p:Documentation" name="documentation" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element type="p:List" name="list"/>
         </xs:sequence>
         <xs:attribute type="xs:token" name="name"/>

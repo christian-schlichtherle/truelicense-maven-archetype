@@ -8,9 +8,6 @@
         xml:lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:p="${project.url}/xml/archetype-properties">
-    <p:documentation>
-        This example drags in all features which are possible to combine.
-    </p:documentation>
     <p:list>
         <p:artifactId>kitchen-sink</p:artifactId>
         <p:artifactName>Kitchen Sink</p:artifactName>
@@ -35,13 +32,13 @@
         <p:keyStoreType>JKS</p:keyStoreType>
         <p:licenseKeyFormat>V2/XML</p:licenseKeyFormat>
         <p:package>com.company.product</p:package>
-        <p:password>test1234</p:password>
+        <p:password>unsafe2020</p:password>
         <p:pbeAlgorithm>PBEWithMD5AndDES</p:pbeAlgorithm>
         <p:preferencesType>user</p:preferencesType>
         <p:privateKeyStoreFile>private.ks</p:privateKeyStoreFile>
         <p:publicKeyStoreFile>public.ks</p:publicKeyStoreFile>
         <p:signatureAlgorithm>SHA512withECDSA</p:signatureAlgorithm>
-        <p:subject>Product 1</p:subject>
+        <p:subject>StarGazer 2020</p:subject>
         <p:trueLicenseVersion>${truelicense.version}</p:trueLicenseVersion>
         <p:verboseCli>true</p:verboseCli>
         <p:version>1.0-SNAPSHOT</p:version>

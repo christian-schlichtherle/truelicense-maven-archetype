@@ -8,19 +8,13 @@
         xml:lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:p="${project.url}/xml/archetype-properties">
-    <p:documentation>
-        This example adds
-        <code>keyMgrClock=java.time.Clock.systemDefaultZone()</code>
-        to the Basic Configuration example in order to replace the system
-        clock with a custom implementation.
-    </p:documentation>
     <p:list>
         <p:artifactId>custom-clock</p:artifactId>
         <p:company>Company Inc.</p:company>
         <p:groupId>com.company.product</p:groupId>
         <p:keyMgrClock>java.time.Clock.systemDefaultZone()</p:keyMgrClock>
-        <p:password>test1234</p:password>
-        <p:subject>Product 1</p:subject>
+        <p:password>unsafe2020</p:password>
+        <p:subject>StarGazer 2020</p:subject>
         <p:version>1.0-SNAPSHOT</p:version>
     </p:list>
 </p:properties>
