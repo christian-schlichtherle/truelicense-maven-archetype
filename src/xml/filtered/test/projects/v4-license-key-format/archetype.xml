@@ -8,20 +8,13 @@
         xml:lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:p="${project.url}/xml/archetype-properties">
-    <p:documentation>
-        This example adds
-        <code>licenseKeyFormat=V4</code>
-        to the Basic Configuration example in order to use the V4
-        license key format and use the dependency on the Jackson JSON
-        Processor in the generated code.
-    </p:documentation>
     <p:list>
         <p:artifactId>v4-license-key-format</p:artifactId>
         <p:company>Company Inc.</p:company>
         <p:groupId>com.company.product</p:groupId>
         <p:licenseKeyFormat>V4</p:licenseKeyFormat>
-        <p:password>test1234</p:password>
-        <p:subject>Product 1</p:subject>
+        <p:password>unsafe2020</p:password>
+        <p:subject>StarGazer 2020</p:subject>
         <p:version>1.0-SNAPSHOT</p:version>
     </p:list>
 </p:properties>

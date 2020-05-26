@@ -64,9 +64,7 @@
                                             <configuration>
                                                 <alias>${dollar}{@item@KeyEntryAlias}</alias>
                                                 <dname>${dollar}{distinguishedName}</dname>
-#if($keyPairAlgorithm != "auto")
                                                 <keyalg>${dollar}{keyPairAlgorithm}</keyalg>
-#end
                                                 <keypass>${dollar}{@item@KeyEntryPassword}</keypass>
 #if($keyPairSize != 0)
                                                 <keysize>${dollar}{keyPairSize}</keysize>
