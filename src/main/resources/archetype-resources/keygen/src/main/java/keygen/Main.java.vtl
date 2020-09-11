@@ -149,10 +149,7 @@ public enum Main {
         try {
             process(args);
             status = 0;
-        } catch (final IllegalArgumentException ex) {
-            printUsage();
-            status = 1;
-        } catch (final NoSuchElementException ex) {
+        } catch (final IllegalArgumentException | NoSuchElementException ex) {
             printUsage();
             status = 1;
         } catch (final Throwable ex) {
