@@ -5,7 +5,6 @@
   -->
 <p:properties
         name="V1 License Key Format"
-        xml:lang="en"
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:p="${project.url}/xml/archetype-properties">
     <p:list>
